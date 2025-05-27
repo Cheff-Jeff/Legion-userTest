@@ -27,7 +27,7 @@
   },
   "private": true,
   "scripts": {
-    "prepare": "bunx prisma generate",
+    "prepare": "npx prisma generate",
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
