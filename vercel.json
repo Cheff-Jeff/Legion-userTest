@@ -1,5 +1,5 @@
 {
-  "installCommand": "bun install --frozen-lockfile",
-  "buildCommand": "bunx prisma generate && bun run build",
+  "installCommand": "npm install",
+  "buildCommand": "npx prisma generate && npm run build",
   "outputDirectory": ".output"
 }
