@@ -1,6 +1,5 @@
 {
-  "buildCommand": "bun run build",
-  "outputDirectory": ".output",
   "installCommand": "bun install --frozen-lockfile",
-  "framework": "nuxt"
+  "buildCommand": "bunx prisma generate && bun run build",
+  "outputDirectory": ".output"
 }
