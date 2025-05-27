@@ -1,0 +1,38 @@
+version: "3.8"
+services:
+  legion:
+    container_name: legion
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    networks:
+      - legion-network
+    restart: unless-stopped
+    # environment:
+    #   DATABASE_URL: "mysql://jeffrey_legion:k5pe1EDlky@185.104.29.72/jeffrey_legion"
+
+  mysql_legion:
+    image: mysql:lts
+    container_name: mysql-legion
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: legion-db
+      MYSQL_USER: legion-user
+      MYSQL_PASSWORD: user_password
+    volumes:
+      - mysql_data_legion:/var/lib/mysql
+      - ./my-custom.cnf:/etc/mysql/conf.d/my-custom.cnf
+    ports:
+      - "3306:3306"
+    networks:
+      - legion-network
+    restart: unless-stopped
+
+networks:
+  legion-network:
+    driver: bridge
+
+volumes:
+  mysql_data_legion:

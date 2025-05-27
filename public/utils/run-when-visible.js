@@ -1,0 +1,1 @@
+exportlet c=0; function runWhenVisible(e,t,o){const i=++c;e.setAttribute("data-intersection-ref",`${i}`);const r=new IntersectionObserver(s=>{if(!e.isConnected){r.unobserve(e);const n=document.querySelector(`[data-intersection-ref="${i}"]`);n&&runWhenVisible(n,t,o)}s.some(n=>n.intersectionRatio>0)&&(t(e),r.unobserve(e))},o);r.observe(e)}

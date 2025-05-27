@@ -1,0 +1,84 @@
+generator client {
+  provider      = "prisma-client-js"
+  output        = "../lib/generated/prisma"
+  binaryTargets = ["native", "debian-openssl-1.1.x"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Util {
+  id         Int    @id @default(autoincrement())
+  name       String @unique
+  commitData String
+}
+
+model Block {
+  id         Int     @id @default(autoincrement())
+  coreScript String? @db.Text
+  css        String  @db.Text
+  cssUrl     String?
+  pending    Boolean @default(true)
+
+  blockShortName String
+  blockHtml      String @db.Text
+
+  translatedCode String? @db.Text
+  scriptName     String?
+  scriptUrl      String?
+
+  headingFont String?
+  bodyFont    String?
+
+  repositoryName String?
+  repositoryUrl  String?
+
+  categories CategoriesOnBlocks[]
+  tags       TagsOnBlocks[]
+}
+
+model Category {
+  id       Int                  @id @default(autoincrement())
+  category String               @unique
+  Blocks   CategoriesOnBlocks[]
+
+  ancestors   CategoryTree[] @relation("Ancestor")
+  descendants CategoryTree[] @relation("Descendant")
+}
+
+model Tag {
+  id     Int            @id @default(autoincrement())
+  tag    String         @unique
+  Blocks TagsOnBlocks[]
+}
+
+model CategoryTree {
+  ancestorId   Int
+  descendantId Int
+  depth        Int @default(0)
+
+  ancestor   Category @relation("Ancestor", fields: [ancestorId], references: [id])
+  descendant Category @relation("Descendant", fields: [descendantId], references: [id])
+
+  @@id([ancestorId, descendantId])
+}
+
+model CategoriesOnBlocks {
+  id         Int @id @default(autoincrement())
+  blockId    Int
+  categoryId Int
+
+  Block    Block    @relation(fields: [blockId], references: [id])
+  Category Category @relation(fields: [categoryId], references: [id])
+}
+
+model TagsOnBlocks {
+  id      Int  @id @default(autoincrement())
+  blockId Int?
+  tagId   Int?
+
+  Block Block? @relation(fields: [blockId], references: [id])
+  Tag   Tag?   @relation(fields: [tagId], references: [id])
+}

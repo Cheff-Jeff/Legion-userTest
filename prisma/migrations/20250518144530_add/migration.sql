@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `CategoryTree` ADD COLUMN `depth` INTEGER NOT NULL DEFAULT 0;

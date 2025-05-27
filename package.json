@@ -1,0 +1,41 @@
+{
+  "name": "nuxt-app",
+  "dependencies": {
+    "@formkit/auto-animate": "^0.8.2",
+    "@prisma/client": "^6.7.0",
+    "@types/bootstrap": "^5.2.10",
+    "@types/bun": "^1.2.9",
+    "@types/jsdom": "^21.1.7",
+    "@types/node": "^22.13.14",
+    "@types/node-cron": "^3.0.11",
+    "bootstrap": "5.3.5",
+    "bun": "^1.2.9",
+    "cytoscape": "^3.32.0",
+    "esbuild": "^0.25.2",
+    "htmlparser2": "^10.0.0",
+    "mongoose": "^8.13.2",
+    "nitropack": "^2.11.12",
+    "node-cron": "^3.0.3",
+    "nuxt": "^3.17.4",
+    "prisma": "^6.7.0",
+    "puppeteer": "^24.6.1",
+    "purgecss": "^7.0.2",
+    "vue": "^3.5.13",
+    "vue-debounce": "^5.0.1",
+    "vue-router": "^4.5.0",
+    "vue-sonner": "^1.3.2"
+  },
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "prisma-generate": "prisma generate"
+  },
+  "type": "module",
+  "devDependencies": {
+    "unenv": "^1.10.0"
+  }
+}
